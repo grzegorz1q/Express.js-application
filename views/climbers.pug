@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 Wspinacze
+    if climbers.length
+        table.table.table-bordered.border-dark
+            tr
+                th Imię i nazwisko
+                th Państwo
+                th Zdobyte góry
+            each climber in climbers
+                tr
+                    td #{climber.name} #{climber.surname}
+                    td #{climber.country}
+                    td 
+                        p #{climber.mountains.length} - 
+                            a.link-success.link-underline-opacity-0(href=`/mountains/climber/${climber.id}`) Wyświetl wszystkie

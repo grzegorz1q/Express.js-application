@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  if !mountain
+    .alert.alert-warning
+      strong Informacja:
+      p Brak danych o wybranym szczycie
+  else
+    h1.text-center.text-primary #{mountain.name}
+    a.btn.btn-secondary(href=`/mountains/${mountain.id}/photoPost`) Dodaj zdjęcia
+    p.lead #{mountain.description}
+    .row
+      each image in mountain.images
+        .col-4
+          img(src=`/images/${image}`, alt=`Zdjęcie góry ${mountain.name}` class="img d-block mx-auto mb-3")

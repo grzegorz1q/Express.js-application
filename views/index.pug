@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .text-center
+    h1 Góry na całym świecie
+    .mb-3
+    .row
+      each mountain in mountains 
+        .col-4
+          a.link-dark.link-underline-opacity-0(href=`/mountains/${mountain.id}`)
+            h2 #{mountain.name}
+            .mb-4
+              if mountain.images.length > 0
+                img(src=`/images/${mountain.images[0]}` alt=`Zdjęcie góry ${mountain.name}` class="img")
+              else
+                h4 Brak zdjęcia góry #{mountain.name}

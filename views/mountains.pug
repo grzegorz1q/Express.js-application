@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    if location
+        h1 Szczyty w lokalizacji: #{location}, o wysokości w przedziale #{firstHeight} - #{secondHeight} metrów
+    else
+        h1 Wszystkie szczyty
+    if mountains.length
+        table.table.table-bordered.border-dark
+            tr
+                th Nazwa
+                th Lokalizacja
+                th Wysokość [m]
+                th Pierwsze wejście
+            each mountain in mountains
+                tr
+                    td 
+                        a.link-success.link-underline-opacity-0(href=`/mountains/${mountain.id}`) #{mountain.name}
+                    td #{mountain.location}
+                    td #{mountain.height}
+                    td #{mountain.firstAscent}
+    else
+        if location
+            p Brak szczytów w lokalizacji #{location} o wysokości między #{firstHeight} a #{secondHeight}.
+        else
+            p Brak szczytów do wyświetlenia.
+    .mt-4
+        a.btn.btn-secondary(href="/mountains/mountainPost") Dodaj szczyt

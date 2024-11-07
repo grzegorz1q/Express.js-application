@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1 Dodaj szczyt
+
+    if errorMessage
+        .alert.alert-danger #{errorMessage}
+    
+    form(action="/mountains/mountain" method="POST" enctype="multipart/form-data")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Nazwa
+            .col-sm-1
+                input(type="text" name="name" placeholder="")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Lokalizacja
+            .col-sm-2
+                input(type="text" name="location" placeholder="")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Wysokość
+            .col-sm-2
+                input(type="text" name="height" placeholder="")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Pierwsze wejście
+            .col-sm-2
+                input(type="date" name="firstAscent" placeholder="")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Opis
+            .col-sm-2
+                textarea(name="description" placeholder="Dodaj opis szczytu" class="form-control" rows="4")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Zdjęcia
+            .col-sm-3
+                input(type="file" name="images" accept="image/*" class="form-control" multiple)
+        input(type="submit" value="Dodaj" class="btn btn-success")
+        

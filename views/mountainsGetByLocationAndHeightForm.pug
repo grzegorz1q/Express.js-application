@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1 Wyświetl szczyty w podanej lokalizacji i wysokości
+    if errorMessage
+        .alert.alert-danger #{errorMessage}
+    form(action="/mountains/mountain" method="GET")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Lokalizacja
+            .col-sm-2
+                select(name="location" class="form-select")
+                    each location in locations
+                        option(value=location) #{location}
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Minimalna wysokość
+            .col-sm-2
+                input(type="text" name="firstHeight" placeholder="np.: 1000" class="form-control")
+        .row.mb-3.align-items-center
+            p.col-sm-1.col-form-label Maksymalna wysokość
+            .col-sm-2
+                input(type="text" name="secondHeight" placeholder="np.: 8000" class="form-control")
+        input(type="submit" name="siteView" value="Wyświetl na stronie" class="btn btn-success")
+        input(type="submit" name="jsonView" value="Wyświetl w formacie JSON" class="btn btn-dark")
+        input(type="submit" name="jsonDow" value="Pobierz w formacie JSON" class="btn btn-danger")
